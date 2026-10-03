@@ -458,6 +458,9 @@
   .cursor-pointer {
     cursor: pointer;
   }
+  .resize {
+    resize: both;
+  }
   .resize-none {
     resize: none;
   }
@@ -1169,6 +1172,11 @@
       line-height: calc(var(--spacing) * 12);
     }
   }
+  .lg\:whitespace-nowrap {
+    @media (width >= 64rem) {
+      white-space: nowrap;
+    }
+  }
   .lg\:even\:flex-row-reverse {
     @media (width >= 64rem) {
       &:nth-child(even) {
@@ -1365,19 +1373,20 @@
     }
   }
 }
-html [data-aos="fade-up"] {
-  transform: translate3d(0, 48px, 0);
+html {
+  background-color: #000;
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
 }
-html [data-aos="fade-right"] {
-  transform: translate3d(-48px, 0, 0);
+html.lenis {
+  scroll-behavior: auto;
 }
-html [data-aos="fade-left"] {
-  transform: translate3d(48px, 0, 0);
+html.lenis.lenis-smooth [data-lenis-prevent] iframe {
+  pointer-events: auto;
 }
-@media (width < 80rem) {
-  html [data-aos="fade-left"],
-  html [data-aos="fade-right"] {
-    transform: translate3d(0, 48px, 0);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 @font-face {
@@ -1555,7 +1564,7 @@ html [data-aos="fade-left"] {
   opacity: 1;
 }
 
-/* 48px 的位移刻意對齊全站 AOS 進場（見 src/styles/tailwind.css 的 AOS 覆寫），讓彈窗的
+/* 48px 的位移刻意對齊全站 GSAP 進場（見 src/js/global/motion.js），讓彈窗的
    出場語彙和頁面區塊同一套；但這裡是即時互動而非滾動進場，所以時間壓到 0.44s、
    換成 ease-out 曲線，並延遲 0.06s 讓遮罩先壓下去，面板才浮上來。 */
 .booking-modal__panel {
@@ -1674,7 +1683,7 @@ html [data-aos="fade-left"] {
 
 /* ---------- 減少動態效果 ---------- */
 
-/* 與 src/js/global/aos.js 的判斷一致：使用者在系統層關掉動畫就整組停用，
+/* 與 src/js/global/motion.js 的判斷一致：使用者在系統層關掉動畫就整組停用，
    開關與換頁都改成瞬間完成。 */
 @media (prefers-reduced-motion: reduce) {
   .booking-modal,
@@ -1702,100 +1711,92 @@ html [data-aos="fade-left"] {
   display: none;
 }
 
-@media (min-width: 64rem) {
-  /* 收縮動畫的時間來源。header.js 的 nav FLIP 會讀這個變數，兩邊才不會不同步。 */
-  .site-header {
-    --header-shrink-duration: 0.25s;
+.site-header__background {
+  pointer-events: none;
+  transform-origin: top;
+}
 
+.site-header__bar {
+  position: relative;
+}
+
+@media (min-width: 64rem) {
+  /* 佔位固定，視覺元素由同一條 GSAP timeline 以 transform 補間。 */
+  .site-header {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     height: 172px;
-    transition: height var(--header-shrink-duration) ease;
+    pointer-events: none;
   }
 
-  .site-header__bar {
-    transition: height var(--header-shrink-duration) ease;
+  .site-header__logo,
+  .site-header__brand-text,
+  .site-header__actions,
+  .site-header__nav > ul,
+  .site-header__drawer,
+  .booking-modal {
+    pointer-events: auto;
   }
 
   .site-header__logo {
-    transition:
-      width var(--header-shrink-duration) ease,
-      height var(--header-shrink-duration) ease;
+    transform-origin: center;
   }
 
-  /* 品牌文字用 max-width 收合而非 display: none，才能平滑收起來。
-     負的 margin 是用來抵銷 .site-header__brand 的 lg:gap-10：元素還在 flex 流裡，
-     gap 不會像 display: none 那樣消失，不補回來收縮後會多出 40px。
-     max-width 只要大於實際文字寬度即可（中文約 20rem、英文約 21rem），32rem 是餘裕；
-     文字若加長到超過這個值會被裁掉，屆時要一併調大。
-     收合後元素的「高度」仍在（max-width 不管高度），brand 會比 logo 高幾 px，但 brand
-     本身沒有可見樣式且是 items-center，logo 位置不受影響。 */
   .site-header__brand-text {
-    overflow: hidden;
     max-width: 32rem;
-    transition:
-      max-width var(--header-shrink-duration) ease,
-      margin-inline-start var(--header-shrink-duration) ease,
-      opacity var(--header-shrink-duration) ease;
   }
 
   .site-header__nav {
     position: absolute;
+    top: 116px;
     right: 0;
-    bottom: 8px;
     left: 0;
     display: block;
   }
 
-  .site-header.is-scrolled {
+  .site-header__nav > ul {
+    width: max-content;
+    margin-inline: auto;
+  }
+
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
+    .site-header__background {
+    transform: scaleY(calc(88 / 172));
+  }
+
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__bar {
     height: 88px;
-    justify-content: center;
   }
 
-  .site-header.is-scrolled .site-header__bar {
-    height: 80px;
-  }
-
-  .site-header.is-scrolled .site-header__logo {
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__logo {
     width: 106px;
     height: 56px;
   }
 
-  .site-header.is-scrolled .site-header__brand-text {
-    max-width: 0;
-    margin-inline-start: -2.5rem;
-    opacity: 0;
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
+    .site-header__brand-text {
+    display: none;
   }
 
-  /* absolute → static（從 header 底部整行變成 bar 的中間欄）是唯一無法用 CSS
-     過渡的一段，改由 header.js 的 FLIP 用 transform 補間。 */
-  .site-header.is-scrolled .site-header__nav {
+  /* compact 僅用於一次性端點量測與無套件 fallback，不在動畫中切換布局。 */
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__nav {
     position: static;
     inset: auto;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .site-header,
-    .site-header__bar,
-    .site-header__logo,
-    .site-header__brand-text {
-      transition: none;
-    }
   }
 }
 
 @media (min-width: 64rem) and (max-width: 79.9375rem) {
-  .site-header.is-scrolled .site-header__menu-link,
-  .site-header.is-scrolled .site-header__lang-link {
+  .site-header__menu-link,
+  .site-header__lang-link {
     padding-inline: 1rem;
   }
 
-  .site-header.is-scrolled .site-header__cta {
+  .site-header__cta {
     padding-inline: 0.5rem;
   }
 
-  .site-header.is-scrolled .site-header__lang-link::after {
+  .site-header__lang-link::after {
     right: 1rem;
     left: 1rem;
   }

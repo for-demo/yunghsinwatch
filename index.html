@@ -10,24 +10,26 @@
     <link rel="icon" href="./assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./assets/vendor/swiper/swiper-bundle.min.css" />
     <title>永新鐘錶｜百達翡麗專賣店</title>
+    <link rel="stylesheet" href="./assets/vendor/lenis/lenis.css" />
     <link rel="stylesheet" href="./assets/css/index.css" />
   </head>
   <body class="min-h-screen bg-white type-body-base text-black">
-    <header class="site-header sticky top-0 z-40 bg-black text-white" data-site-header>
+    <header class="site-header sticky top-0 z-40 text-white" data-site-header>
+      <div class="site-header__background absolute inset-0 bg-black" aria-hidden="true"></div>
       <div
         class="site-header__bar mx-auto flex h-[68px] w-full max-w-[86rem] items-center justify-between px-5 lg:h-[112px] lg:px-12"
       >
         <a
-          class="site-header__brand flex shrink-0 items-center gap-4 lg:gap-10"
+          class="site-header__brand flex min-w-0 items-center gap-4 lg:shrink-0 lg:gap-10"
           href="./index.html"
         >
           <img
-            class="site-header__logo h-11 w-[83px] lg:h-[74px] lg:w-[140px]"
+            class="site-header__logo h-11 w-[83px] shrink-0 lg:h-[74px] lg:w-[140px]"
             src="./assets/images/logo-patek-philippe-light.svg"
             alt="Patek Philippe"
           />
           <span
-            class="site-header__brand-text flex flex-col justify-center text-center type-heading-2xs tracking-[1px] whitespace-nowrap lg:type-heading-md en:type-display-xs lg:en:type-display-sm"
+            class="site-header__brand-text flex min-w-0 flex-col justify-center text-center type-heading-2xs tracking-[1px] lg:type-heading-md lg:whitespace-nowrap en:type-display-xs lg:en:type-display-sm"
           >
             <span class="site-header__brand-line" data-i18n="brand.line1"
               >永新鐘錶百達翡麗專賣店</span
@@ -166,6 +168,7 @@
         class="site-header__drawer fixed inset-0 z-50 flex flex-col bg-black text-white"
         id="site-header-drawer"
         data-header-drawer
+        data-lenis-prevent
       >
         <div class="flex h-[68px] shrink-0 items-center justify-end px-5">
           <button
@@ -310,7 +313,10 @@
 
         <!-- 捲動層與置中層分開：min-h-full + items-center 讓面板在螢幕夠高時垂直置中，
        內容比螢幕高時則自然往下長，不會被 flex 置中切掉上緣。 -->
-        <div class="booking-modal__scroll absolute inset-0 overflow-y-auto overscroll-contain">
+        <div
+          class="booking-modal__scroll absolute inset-0 overflow-y-auto overscroll-contain"
+          data-lenis-prevent
+        >
           <div class="flex min-h-full items-center justify-center px-5 py-10 lg:px-8">
             <div
               class="booking-modal__panel flex w-full max-w-[1024px] flex-col items-center gap-6 bg-white p-6 text-black lg:gap-8 lg:p-10"
@@ -1371,6 +1377,12 @@
     </footer>
 
     <script src="./assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!-- 普通 script 保持順序；builder 注入的全站初始化會接在這些本機套件之後。 -->
+    <script src="./assets/vendor/lenis/lenis.min.js"></script>
+    <script src="./assets/vendor/gsap/gsap.min.js"></script>
+    <script src="./assets/vendor/gsap/ScrollTrigger.min.js"></script>
+    <script src="./assets/vendor/gsap/CustomEase.min.js"></script>
+
     <script src="./assets/js/index.js"></script>
   </body>
 </html>

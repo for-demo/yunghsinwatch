@@ -21,8 +21,8 @@
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    --default-transition-duration: 150ms;
-    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-transition-duration: 300ms;
+    --default-transition-timing-function: ease-out;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --font-display: "Playfair Display", ui-serif, Georgia, serif;
@@ -327,9 +327,6 @@
   .hidden {
     display: none;
   }
-  .inline {
-    display: inline;
-  }
   .size-1 {
     width: calc(var(--spacing) * 1);
     height: calc(var(--spacing) * 1);
@@ -441,9 +438,6 @@
   }
   .shrink-0 {
     flex-shrink: 0;
-  }
-  .grow {
-    flex-grow: 1;
   }
   .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
@@ -789,9 +783,6 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
-  .whitespace-pre-line {
-    white-space: pre-line;
-  }
   .text-background {
     color: var(--color-background);
   }
@@ -868,10 +859,6 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
-  .duration-200 {
-    --tw-duration: 200ms;
-    transition-duration: 200ms;
-  }
   .peer-checked\:block {
     &:is(:where(.peer):checked ~ *) {
       display: block;
@@ -887,9 +874,14 @@
       color: #ababab;
     }
   }
-  .empty\:hidden {
-    &:empty {
-      display: none;
+  .hover\:bg-black\/40 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #000000 40%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-black) 40%, transparent);
+        }
+      }
     }
   }
   .hover\:text-brand-gold {
@@ -1215,7 +1207,7 @@
       line-height: 3.125rem;
     }
   }
-  .\32 xl\:px-0 {
+  .\32xl\:px-0 {
     @media (width >= 96rem) {
       padding-inline: calc(var(--spacing) * 0);
     }
@@ -1338,63 +1330,63 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/playfair-display-latin-400-normal.woff2") format("woff2");
+  src: url(../fonts/playfair-display-latin-400-normal.woff2) format("woff2");
 }
 @font-face {
   font-family: "Playfair Display";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/playfair-display-latin-500-normal.woff2") format("woff2");
+  src: url(../fonts/playfair-display-latin-500-normal.woff2) format("woff2");
 }
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/inter-latin-400-normal.woff2") format("woff2");
+  src: url(../fonts/inter-latin-400-normal.woff2) format("woff2");
 }
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/inter-latin-500-normal.woff2") format("woff2");
+  src: url(../fonts/inter-latin-500-normal.woff2) format("woff2");
 }
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/inter-latin-600-normal.woff2") format("woff2");
+  src: url(../fonts/inter-latin-600-normal.woff2) format("woff2");
 }
 @font-face {
   font-family: "Noto Serif TC";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/noto-serif-tc-chinese-traditional-500-normal.woff2") format("woff2");
+  src: url(../fonts/noto-serif-tc-chinese-traditional-500-normal.woff2) format("woff2");
 }
 @font-face {
   font-family: "Noto Sans TC";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/noto-sans-tc-chinese-traditional-400-normal.woff2") format("woff2");
+  src: url(../fonts/noto-sans-tc-chinese-traditional-400-normal.woff2) format("woff2");
 }
 @font-face {
   font-family: "Noto Sans TC";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/noto-sans-tc-chinese-traditional-500-normal.woff2") format("woff2");
+  src: url(../fonts/noto-sans-tc-chinese-traditional-500-normal.woff2) format("woff2");
 }
 @font-face {
   font-family: "Noto Sans TC";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("../fonts/noto-sans-tc-chinese-traditional-700-normal.woff2") format("woff2");
+  src: url(../fonts/noto-sans-tc-chinese-traditional-700-normal.woff2) format("woff2");
 }
 @property --tw-translate-x {
   syntax: "*";
@@ -1448,10 +1440,6 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   syntax: "*";
   inherits: false;
 }
-@property --tw-duration {
-  syntax: "*";
-  inherits: false;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or
     ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
@@ -1471,46 +1459,24 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
-      --tw-duration: initial;
     }
   }
 }
-
-/* 組件: src/components/booking-modal/booking-modal.css */
-
-/* 預約彈跳視窗的動態效果。
-   開關的寫法沿用 header 行動版抽屜（src/components/header/header.css）的那一套：
-   用 .is-open 切換，並讓 visibility 的 transition 延遲到位移／淡出跑完才生效，
-   這樣關閉時面板才不會瞬間消失。
-
-   刻意不在這支檔案裡用 var(--color-*)：Tailwind 是每頁單獨編譯、只輸出該頁用得到的 theme
-   變數，sidecar CSS 引用沒被任何 utility 用過的 token 會解析失敗（見 store-locator.css 的註解）。
-   顏色一律寫在 HTML 的 utility 上。 */
-
-/* ---------- 遮罩與面板的進場／退場 ---------- */
-
 .booking-modal {
   visibility: hidden;
   transition: visibility 0s linear 0.3s;
 }
-
 .booking-modal.is-open {
   visibility: visible;
   transition: visibility 0s;
 }
-
 .booking-modal__scrim {
   opacity: 0;
   transition: opacity 0.24s ease;
 }
-
 .booking-modal.is-open .booking-modal__scrim {
   opacity: 1;
 }
-
-/* 48px 的位移刻意對齊全站 GSAP 進場（見 src/js/global/motion.js），讓彈窗的
-   出場語彙和頁面區塊同一套；但這裡是即時互動而非滾動進場，所以時間壓到 0.44s、
-   換成 ease-out 曲線，並延遲 0.06s 讓遮罩先壓下去，面板才浮上來。 */
 .booking-modal__panel {
   opacity: 0;
   transform: translate3d(0, 48px, 0) scale(0.98);
@@ -1518,95 +1484,64 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     opacity 0.44s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s,
     transform 0.44s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s;
 }
-
 .booking-modal.is-open .booking-modal__panel {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
 }
-
-/* 關閉走較短的反向動畫：按下 Esc 或點遮罩之後不該還要等將近半秒。 */
 .booking-modal:not(.is-open) .booking-modal__panel {
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
 }
-
-/* 開著的時候不讓捲動穿透到底下的頁面（body 的 overflow-hidden 由 JS 加）。 */
 .booking-modal__scroll {
   -webkit-overflow-scrolling: touch;
 }
-
-/* ---------- 步驟切換 ---------- */
-
-/* 兩個 step 疊在同一個 grid 格子裡，容器高度由 JS 量測後寫進 style.height 再過渡。
-   不用 grid-template-rows: 0fr→1fr 的手風琴寫法，是因為這裡要的是「換頁」而不是「展開」，
-   兩個 step 必須在交叉淡入淡出的那段時間同時存在。 */
 .booking-modal__steps {
   display: grid;
-  /* align-items 一定要是 start：grid item 預設 stretch，容器被 JS 釘上固定高度之後，
-     量到的 step 高度就會變成容器高度而不是內容高度，高度過渡會量錯。 */
   align-items: start;
   transition: height 0.36s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-
 .booking-modal__steps > [data-booking-step] {
   grid-area: 1 / 1;
 }
-
-/* 離場：往前走時舊的往左退，返回時往右退。 */
 .booking-modal__steps > .is-leaving {
   opacity: 1;
   animation: booking-step-out 0.2s ease forwards;
   pointer-events: none;
 }
-
 .booking-modal__steps[data-booking-dir="back"] > .is-leaving {
   animation-name: booking-step-out-back;
 }
-
-/* 進場：稍微延後，等舊的淡掉再進來，避免兩層文字重疊在一起。 */
 .booking-modal__steps > .is-entering {
   animation: booking-step-in 0.32s cubic-bezier(0.22, 0.61, 0.36, 1) 0.12s backwards;
 }
-
 .booking-modal__steps[data-booking-dir="back"] > .is-entering {
   animation-name: booking-step-in-back;
 }
-
 @keyframes booking-step-out {
   to {
     opacity: 0;
     transform: translate3d(-24px, 0, 0);
   }
 }
-
 @keyframes booking-step-out-back {
   to {
     opacity: 0;
     transform: translate3d(24px, 0, 0);
   }
 }
-
 @keyframes booking-step-in {
   from {
     opacity: 0;
     transform: translate3d(24px, 0, 0);
   }
 }
-
 @keyframes booking-step-in-back {
   from {
     opacity: 0;
     transform: translate3d(-24px, 0, 0);
   }
 }
-
-/* ---------- 原生日期欄位 ---------- */
-
-/* 瀏覽器自帶的日曆圖示位置與樣式各家不同，這裡把它透明化並疊到欄位右側（也就是 HTML 裡
-   那顆設計稿日曆圖示的位置），點圖示就能叫出原生 picker。
-   刻意只蓋右側 3rem（欄位的 pr-11 是 2.75rem）而不是整個欄位，左半邊要留給鍵盤輸入時
-   點選年／月／日各段。定位基準是外層那個 .relative 包裝。 */
 .booking-modal__date::-webkit-calendar-picker-indicator {
   position: absolute;
   top: 0;
@@ -1618,17 +1553,10 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   cursor: pointer;
   opacity: 0;
 }
-
-/* Safari 會把 date 欄位的值靠左但保留內建 padding，統一清掉避免和 px-4 疊加。 */
 .booking-modal__date::-webkit-date-and-time-value {
   text-align: left;
   margin: 0;
 }
-
-/* ---------- 減少動態效果 ---------- */
-
-/* 與 src/js/global/motion.js 的判斷一致：使用者在系統層關掉動畫就整組停用，
-   開關與換頁都改成瞬間完成。 */
 @media (prefers-reduced-motion: reduce) {
   .booking-modal,
   .booking-modal__scrim,
@@ -1636,36 +1564,25 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   .booking-modal__steps {
     transition: none;
   }
-
   .booking-modal__steps > .is-leaving,
   .booking-modal__steps > .is-entering {
     animation: none;
   }
 }
-
-/* 組件: src/components/header/header.css */
-
 .site-header__brand-line:empty {
   display: none;
 }
-
-/* ---------- 桌機（lg 以上） ---------- */
-
 .site-header__nav {
   display: none;
 }
-
 .site-header__background {
   pointer-events: none;
   transform-origin: top;
 }
-
 .site-header__bar {
   position: relative;
 }
-
 @media (min-width: 64rem) {
-  /* 佔位固定，視覺元素由同一條 GSAP timeline 以 transform 補間。 */
   .site-header {
     display: flex;
     flex-direction: column;
@@ -1673,7 +1590,6 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     height: 172px;
     pointer-events: none;
   }
-
   .site-header__logo,
   .site-header__brand-text,
   .site-header__actions,
@@ -1682,15 +1598,12 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   .booking-modal {
     pointer-events: auto;
   }
-
   .site-header__logo {
     transform-origin: center;
   }
-
   .site-header__brand-text {
     max-width: 32rem;
   }
-
   .site-header__nav {
     position: absolute;
     top: 116px;
@@ -1698,56 +1611,43 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     left: 0;
     display: block;
   }
-
   .site-header__nav > ul {
     width: max-content;
     margin-inline: auto;
   }
-
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
     .site-header__background {
     transform: scaleY(calc(88 / 172));
   }
-
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__bar {
     height: 88px;
   }
-
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__logo {
     width: 106px;
     height: 56px;
   }
-
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
     .site-header__brand-text {
     display: none;
   }
-
-  /* compact 僅用於一次性端點量測與無套件 fallback，不在動畫中切換布局。 */
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__nav {
     position: static;
     inset: auto;
   }
 }
-
 @media (min-width: 64rem) and (max-width: 79.9375rem) {
   .site-header__menu-link,
   .site-header__lang-link {
     padding-inline: 1rem;
   }
-
   .site-header__cta {
     padding-inline: 0.5rem;
   }
-
   .site-header__lang-link::after {
     right: 1rem;
     left: 1rem;
   }
 }
-
-/* ---------- 桌機下拉子選單 ---------- */
-
 .site-header__submenu {
   visibility: hidden;
   opacity: 0;
@@ -1757,7 +1657,6 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     visibility 0s linear 0.2s;
   transform: translate(-50%, -0.5rem);
 }
-
 .site-header__dropdown:hover .site-header__submenu,
 .site-header__dropdown:focus-within .site-header__submenu,
 .site-header__dropdown.is-open .site-header__submenu {
@@ -1769,25 +1668,19 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     visibility 0s;
   transform: translate(-50%, 0);
 }
-
 .site-header__caret {
   transition: transform 0.2s ease;
 }
-
 .site-header__dropdown:hover .site-header__caret,
 .site-header__dropdown:focus-within .site-header__caret,
 .site-header__dropdown.is-open .site-header__caret {
   transform: rotate(180deg);
 }
-
 .site-header__dropdown:hover .site-header__menu-link,
 .site-header__dropdown:focus-within .site-header__menu-link,
 .site-header__dropdown.is-open .site-header__menu-link {
   color: var(--color-brand-gold);
 }
-
-/* ---------- 語言切換 ---------- */
-
 .site-header__lang-link::after {
   position: absolute;
   right: 1.5rem;
@@ -1799,34 +1692,25 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   transition: opacity 0.2s ease;
   content: "";
 }
-
-.site-header__lang-link[data-active="true"] {
+.site-header__lang-link[aria-current="true"] {
   color: var(--color-brand-gold);
 }
-
-.site-header__lang-link[data-active="true"]::after {
+.site-header__lang-link[aria-current="true"]::after {
   opacity: 1;
 }
-
 .site-header__drawer .site-header__lang-link::after {
   display: none;
 }
-
-/* ---------- 預約按鈕 ---------- */
-
 .site-header__cta {
+  box-shadow: inset 0 0 0 100vmax rgb(0 0 0 / 0%);
   transition:
-    border-color 0.2s ease,
-    background-image 0.2s ease;
+    border-color 0.3s ease-out,
+    box-shadow 0.3s ease-out;
 }
-
 .site-header__cta:hover {
   border-color: #aea472;
-  background-image: linear-gradient(rgb(0 0 0 / 12%), rgb(0 0 0 / 12%));
+  box-shadow: inset 0 0 0 100vmax rgb(0 0 0 / 12%);
 }
-
-/* ---------- 行動版抽屜 ---------- */
-
 .site-header__drawer {
   visibility: hidden;
   opacity: 0;
@@ -1836,7 +1720,6 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     visibility 0s linear 0.2s;
   transform: translateX(100%);
 }
-
 .site-header__drawer.is-open {
   visibility: visible;
   opacity: 1;
@@ -1846,33 +1729,25 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     visibility 0s;
   transform: translateX(0);
 }
-
 @media (min-width: 64rem) {
   .site-header__drawer {
     display: none;
   }
 }
-
 .site-header__accordion-panel {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.2s ease;
 }
-
 .site-header__accordion-panel > * {
   overflow: hidden;
 }
-
 .site-header__accordion.is-open .site-header__accordion-panel {
   grid-template-rows: 1fr;
 }
-
 .site-header__accordion.is-open .site-header__caret {
   transform: rotate(180deg);
 }
-
-/* 組件: src/components/footer/footer.css */
-
 .site-footer__icon {
   display: block;
   flex: none;
@@ -1884,28 +1759,23 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   mask-repeat: no-repeat;
   mask-size: contain;
 }
-
 .site-footer__icon--location {
-  -webkit-mask-image: url("../icons/location.svg");
-  mask-image: url("../icons/location.svg");
+  -webkit-mask-image: url(../icons/location.svg);
+  mask-image: url(../icons/location.svg);
 }
-
 .site-footer__icon--call {
-  -webkit-mask-image: url("../icons/call.svg");
-  mask-image: url("../icons/call.svg");
+  -webkit-mask-image: url(../icons/call.svg);
+  mask-image: url(../icons/call.svg);
 }
-
 .site-footer__icon--mail {
-  -webkit-mask-image: url("../icons/mail.svg");
-  mask-image: url("../icons/mail.svg");
+  -webkit-mask-image: url(../icons/mail.svg);
+  mask-image: url(../icons/mail.svg);
 }
-
 .site-footer__icon--instagram {
-  -webkit-mask-image: url("../icons/instagram.svg");
-  mask-image: url("../icons/instagram.svg");
+  -webkit-mask-image: url(../icons/instagram.svg);
+  mask-image: url(../icons/instagram.svg);
 }
-
 .site-footer__icon--facebook {
-  -webkit-mask-image: url("../icons/facebook.svg");
-  mask-image: url("../icons/facebook.svg");
+  -webkit-mask-image: url(../icons/facebook.svg);
+  mask-image: url(../icons/facebook.svg);
 }

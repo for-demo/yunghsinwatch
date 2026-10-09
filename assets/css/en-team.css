@@ -441,9 +441,6 @@
   .shrink-0 {
     flex-shrink: 0;
   }
-  .grow {
-    flex-grow: 1;
-  }
   .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -792,9 +789,6 @@
   }
   .whitespace-nowrap {
     white-space: nowrap;
-  }
-  .whitespace-pre-line {
-    white-space: pre-line;
   }
   .text-background {
     color: var(--color-background);
@@ -1368,6 +1362,17 @@
       &:where(html[lang="en"] *) {
         white-space: nowrap;
       }
+    }
+  }
+  .\[\&_\[lang\=en\]\]\:font-label {
+    & [lang="en"] {
+      font-family: var(--font-label);
+    }
+  }
+  .\[\&_strong\]\:font-medium {
+    & strong {
+      --tw-font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-medium);
     }
   }
 }

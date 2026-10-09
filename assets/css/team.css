@@ -790,9 +790,6 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
-  .whitespace-pre-line {
-    white-space: pre-line;
-  }
   .text-background {
     color: var(--color-background);
   }
@@ -1365,6 +1362,17 @@
       &:where(html[lang="en"] *) {
         white-space: nowrap;
       }
+    }
+  }
+  .\[\&_\[lang\=en\]\]\:font-label {
+    & [lang="en"] {
+      font-family: var(--font-label);
+    }
+  }
+  .\[\&_strong\]\:font-medium {
+    & strong {
+      --tw-font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-medium);
     }
   }
 }

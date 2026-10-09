@@ -1807,14 +1807,16 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 .series-watch-card__reference {
   color: var(--color-brown-dark);
   font-family: var(--font-label);
-  font-size: 16px;
-  line-height: 28px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
   letter-spacing: 1px;
 }
 .series-watch-card__name {
   font-family: var(--font-label);
-  font-size: 18px;
-  line-height: 32px;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 1px;
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-color: transparent;
@@ -1870,6 +1872,9 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     grid-template-columns: repeat(4, 196px);
     gap: 48px;
     padding: 0 48px 48px;
+  }
+  .series-watch-card__reference {
+    font-size: 20px;
   }
   .series-discover {
     gap: 32px;

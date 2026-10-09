@@ -811,9 +811,6 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
-  .whitespace-pre-line {
-    white-space: pre-line;
-  }
   .text-background {
     color: var(--color-background);
   }

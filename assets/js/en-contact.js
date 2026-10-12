@@ -606,10 +606,26 @@
     const error = errorNodeFor(field);
     if (error) error.hidden = valid;
   };
+  const initDialCode = (form) => {
+    const country = form.querySelector("[data-contact-country]");
+    const dialCode = form.querySelector("[data-contact-dial-code]");
+    if (!country || !dialCode) return;
+    const codes = [...new Set([...country.options].map(({ dataset }) => dataset.dialCode))]
+      .filter(Boolean)
+      .sort();
+    dialCode.replaceChildren(...codes.map((code) => new Option(`+${code}`, `+${code}`)));
+    const sync = () => {
+      const code = country.selectedOptions[0]?.dataset.dialCode;
+      if (code) dialCode.value = `+${code}`;
+    };
+    country.addEventListener("change", sync);
+    sync();
+  };
   const init = () => {
     const form = document.querySelector("[data-contact-form]");
     const complete = document.querySelector("[data-contact-complete]");
     if (!form || !complete) return;
+    initDialCode(form);
     const fields = [...form.querySelectorAll("[data-contact-field]")];
     for (const field of fields) {
       const revalidate = () => {

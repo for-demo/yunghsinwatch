@@ -396,6 +396,7 @@
     const brandText = header.querySelector(".site-header__brand-text");
     const logo = header.querySelector(".site-header__logo");
     const nav = header.querySelector(".site-header__nav > ul");
+    const dropdown = header.querySelector(".site-header__dropdown");
     const parts = [logo, nav, header.querySelector(".site-header__actions")].filter(Boolean);
     const targets = [...parts, background, brandText].filter(Boolean);
     let scrolled = null;
@@ -403,26 +404,53 @@
     let timeline = null;
     let transition = null;
     const ease = gsap && CustomEase ? CustomEase.create("site-header", "0.25,0.1,0.25,1") : null;
+    const SUBMENU_TOP = "--site-header-submenu-top";
+    const measureSubmenuTop = () =>
+      `${background.getBoundingClientRect().bottom - dropdown.getBoundingClientRect().top}px`;
+    const SPACING = ["--site-header-link-px", "--site-header-cta-px", "--site-header-actions-gap"];
+    const readSpacing = () => {
+      const style = window.getComputedStyle(header);
+      return Object.fromEntries(SPACING.map((name) => [name, style.getPropertyValue(name).trim()]));
+    };
+    const placeSubmenu = () => {
+      if (!dropdown || !background || timeline) return;
+      if (desktop.matches) header.style.setProperty(SUBMENU_TOP, measureSubmenuTop());
+      else header.style.removeProperty(SUBMENU_TOP);
+    };
     const rebuild = () => {
       transition?.kill();
       transition = null;
       timeline?.kill();
       timeline = null;
       gsap?.set(targets, { clearProps: "transform,opacity,visibility" });
-      header.classList.remove("has-header-motion", "is-measuring-compact");
-      if (!desktop.matches || !ease || reducedMotion.matches) return;
+      header.style.removeProperty(SUBMENU_TOP);
+      SPACING.forEach((name) => header.style.removeProperty(name));
+      header.classList.remove("has-header-motion", "is-measuring-spacing", "is-measuring-compact");
+      if (!desktop.matches || !ease || reducedMotion.matches) {
+        placeSubmenu();
+        return;
+      }
       header.classList.add("has-header-motion");
       const first = parts.map((part) => part.getBoundingClientRect());
       const brandBottom = brandText.getBoundingClientRect().bottom;
+      const backgroundFrom = background.getBoundingClientRect().height;
+      const submenuFrom = dropdown && measureSubmenuTop();
+      const spacingFrom = readSpacing();
+      header.classList.add("is-measuring-spacing");
+      const spaced = parts.map((part) => part.getBoundingClientRect());
+      const spacingTo = readSpacing();
+      header.classList.remove("is-measuring-spacing");
       header.classList.add("is-measuring-compact");
       const last = parts.map((part) => part.getBoundingClientRect());
+      const backgroundTo = background.getBoundingClientRect().height;
+      const submenuTo = dropdown && measureSubmenuTop();
       header.classList.remove("is-measuring-compact");
       timeline = gsap.timeline({
         paused: true,
         defaults: { duration: TRANSITION_DURATION, ease: "none" },
       });
       parts.forEach((part, index) => {
-        const start = first[index];
+        const start = spaced[index];
         const end = last[index];
         timeline.to(
           part,
@@ -437,7 +465,16 @@
           0
         );
       });
-      timeline.to(background, { scaleY: 88 / 172, force3D: true }, 0);
+      const spacingChanged = SPACING.filter((name) => spacingFrom[name] !== spacingTo[name]);
+      if (spacingChanged.length) {
+        const pick = (values) =>
+          Object.fromEntries(spacingChanged.map((name) => [name, values[name]]));
+        timeline.fromTo(header, pick(spacingFrom), pick(spacingTo), 0);
+      }
+      timeline.to(background, { scaleY: backgroundTo / backgroundFrom, force3D: true }, 0);
+      if (dropdown) {
+        timeline.fromTo(header, { [SUBMENU_TOP]: submenuFrom }, { [SUBMENU_TOP]: submenuTo }, 0);
+      }
       const navIndex = parts.indexOf(nav);
       const navTravel = first[navIndex].top - last[navIndex].top;
       const brandFadePortion = Math.max(
@@ -464,7 +501,10 @@
       const animate = scrolled !== null;
       scrolled = next;
       header.classList.toggle("is-scrolled", next);
-      if (!timeline) return;
+      if (!timeline) {
+        placeSubmenu();
+        return;
+      }
       if (!animate) timeline.progress(next ? 1 : 0).pause();
       else {
         transition?.kill();

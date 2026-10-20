@@ -1103,9 +1103,9 @@
   .lg\:type-heading-lg {
     @media (width >= 64rem) {
       font-family: var(--font-heading);
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 500;
-      line-height: 2.75rem;
+      line-height: 2.5rem;
     }
   }
   .lg\:type-heading-xl {

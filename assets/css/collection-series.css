@@ -1236,6 +1236,11 @@
       padding-inline: calc(var(--spacing) * 0);
     }
   }
+  .en\:hidden {
+    &:where(html[lang="en"] *) {
+      display: none;
+    }
+  }
   .en\:type-display-xs {
     &:where(html[lang="en"] *) {
       font-family: var(--font-display);
@@ -1266,6 +1271,11 @@
       font-size: 0.875rem;
       font-weight: 400;
       line-height: 1.375rem;
+    }
+  }
+  .en\:font-display {
+    &:where(html[lang="en"] *) {
+      font-family: var(--font-display);
     }
   }
   .en\:font-label {
@@ -1901,6 +1911,14 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     gap: 16px;
   }
 }
+@media (min-width: 40rem) and (width < 64rem) {
+  .series-watch-grid {
+    grid-template-columns: repeat(3, 160px);
+  }
+  .series-watch-card:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
+}
 @media (min-width: 64rem) {
   .series-watch-grid {
     grid-template-columns: repeat(4, 196px);
@@ -1919,13 +1937,6 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 48px;
     max-width: 928px;
-  }
-  .series-discover__card {
-    gap: 20px;
-  }
-  .series-discover__card h3 {
-    font-size: 28px;
-    line-height: 40px;
   }
 }
 @media (min-width: 80rem) {

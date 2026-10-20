@@ -622,10 +622,15 @@
 (() => {
   "use strict";
   if (typeof window.Swiper !== "function") return;
+  if (!document.querySelector(".model-gallery__thumbs")) return;
   const thumbs = new window.Swiper(".model-gallery__thumbs", {
     slidesPerView: 4,
     spaceBetween: 16,
     watchSlidesProgress: true,
+    navigation: {
+      prevEl: ".model-gallery__nav--prev",
+      nextEl: ".model-gallery__nav--next",
+    },
   });
   new window.Swiper(".model-gallery__main", {
     slidesPerView: 1,

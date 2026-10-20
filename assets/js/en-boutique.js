@@ -646,20 +646,111 @@
       const next = embedUrl(query, lang);
       if (frame.getAttribute("src") !== next) frame.setAttribute("src", next);
     };
+    const list = root.querySelector("[data-store-list]");
+    const details = [...root.querySelectorAll("[data-store-detail]")];
+    const panel = root.querySelector("[data-store-panel]");
+    const showDetail = (id) => {
+      let shown = null;
+      for (const detail of details) {
+        const match = detail.dataset.storeDetail === id;
+        detail.hidden = !match;
+        if (match) shown = detail;
+      }
+      if (list) list.hidden = Boolean(shown);
+      if (shown) updateHours(shown);
+      if (panel) panel.scrollTop = 0;
+      return shown;
+    };
     const select = (item) => {
       for (const other of items) {
         other.setAttribute("aria-current", other === item ? "true" : "false");
       }
       render();
-      if (window.matchMedia(MOBILE_QUERY).matches) root.dataset.view = "map";
+      const shown = showDetail(item.dataset.storeId ?? null);
+      if (shown) {
+        shown.querySelector("[data-store-close]")?.focus({ preventScroll: true });
+      } else if (window.matchMedia(MOBILE_QUERY).matches) {
+        root.dataset.view = "map";
+      }
     };
     for (const item of items) {
       item.addEventListener("click", () => select(item));
     }
+    for (const detail of details) {
+      detail.querySelector("[data-store-close]")?.addEventListener("click", () => {
+        showDetail(null);
+        items
+          .find((item) => item.dataset.storeId === detail.dataset.storeDetail)
+          ?.focus({ preventScroll: true });
+      });
+      const toggle = detail.querySelector("[data-store-hours-toggle]");
+      const table = toggle && document.getElementById(toggle.getAttribute("aria-controls"));
+      toggle?.addEventListener("click", () => {
+        const open = toggle.getAttribute("aria-expanded") !== "true";
+        toggle.setAttribute("aria-expanded", String(open));
+        if (table) table.hidden = !open;
+      });
+    }
+    const updateHours = (detail) => {
+      const status = detail.querySelector("[data-store-hours-status]");
+      const rows = [...detail.querySelectorAll("tr[data-weekday]")];
+      if (!status || !rows.length) return;
+      const now = taipeiNow();
+      const toMinutes = (time) => {
+        const [h, m] = time.split(":").map(Number);
+        return h * 60 + m;
+      };
+      const byDay = new Map(rows.map((row) => [Number(row.dataset.weekday), row]));
+      for (const row of rows)
+        row.toggleAttribute("data-today", Number(row.dataset.weekday) === now.day);
+      const today = byDay.get(now.day);
+      if (today?.dataset.open && today.dataset.close) {
+        const open = toMinutes(today.dataset.open);
+        const close = toMinutes(today.dataset.close);
+        if (now.minutes >= open && now.minutes < close) {
+          status.textContent = (root.dataset.hoursOpen ?? "").replace(
+            "{time}",
+            today.dataset.close
+          );
+          return;
+        }
+        if (now.minutes < open) {
+          status.textContent = (root.dataset.hoursClosed ?? "").replace(
+            "{time}",
+            today.dataset.open
+          );
+          return;
+        }
+      }
+      for (let offset = 1; offset <= 7; offset += 1) {
+        const row = byDay.get((now.day + offset) % 7);
+        if (row?.dataset.open) {
+          status.textContent = (root.dataset.hoursClosed ?? "").replace("{time}", row.dataset.open);
+          return;
+        }
+      }
+      status.textContent = "";
+    };
+    const taipeiNow = () => {
+      const parts = Object.fromEntries(
+        new Intl.DateTimeFormat("en-US", {
+          timeZone: "Asia/Taipei",
+          weekday: "short",
+          hour: "2-digit",
+          minute: "2-digit",
+          hourCycle: "h23",
+        })
+          .formatToParts(new Date())
+          .map((part) => [part.type, part.value])
+      );
+      const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(parts.weekday);
+      return { day, minutes: Number(parts.hour) * 60 + Number(parts.minute) };
+    };
     switcher?.addEventListener("click", () => {
       root.dataset.view = root.dataset.view === "list" ? "map" : "list";
     });
     render();
+    showDetail(active().dataset.storeId ?? null);
   };
   const init = () => {
     for (const root of document.querySelectorAll("[data-store-locator]")) setup(root);

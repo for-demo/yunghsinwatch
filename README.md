@@ -5,6 +5,7 @@
    1. [時計系列](https://for-demo.github.io/yunghsinwatch/collection.html)
    2. [單系列列表](https://for-demo.github.io/yunghsinwatch/collection-series.html)
    3. [單錶介紹頁](https://for-demo.github.io/yunghsinwatch/collection-model.html)
+   4. [單錶介紹頁（照片超過 4 張）](https://for-demo.github.io/yunghsinwatch/collection-model-2.html)
 3. 品牌專賣店
    1. [精品店](https://for-demo.github.io/yunghsinwatch/boutique.html)
    2. [我們的團隊](https://for-demo.github.io/yunghsinwatch/team.html)

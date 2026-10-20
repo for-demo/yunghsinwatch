@@ -1713,6 +1713,9 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   object-fit: cover;
   object-position: center bottom;
 }
+.model-gallery__thumbs-wrap {
+  position: relative;
+}
 .model-gallery__thumbs {
   width: 100%;
 }
@@ -1730,6 +1733,35 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.model-gallery__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background-color: rgb(172 150 125 / 0.2);
+  padding: 6px;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.model-gallery__nav img {
+  width: 20px;
+  height: 20px;
+}
+.model-gallery__nav--prev {
+  left: -16px;
+}
+.model-gallery__nav--next {
+  right: -16px;
+}
+.model-gallery__nav.swiper-button-disabled,
+.model-gallery__nav.swiper-button-lock {
+  display: none;
 }
 .model-info {
   display: flex;
@@ -1794,7 +1826,7 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   width: 168px;
   flex: none;
   color: var(--color-brown-warm);
-  font-family: var(--font-body);
+  font-family: var(--font-label);
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;
@@ -1802,9 +1834,61 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 .model-specs__value {
   min-width: 0;
   flex: 1 1 0;
-  font-family: var(--font-body);
+  font-family: var(--font-label);
   font-size: 16px;
   line-height: 28px;
+}
+@media (min-width: 64rem) {
+  .model-top {
+    gap: 48px;
+    padding: 48px;
+  }
+  .model-gallery {
+    max-width: 500px;
+  }
+  .model-info {
+    gap: 32px;
+  }
+  .model-info__reference {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .model-info__name {
+    padding-bottom: 8px;
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .model-specs__row {
+    flex-direction: row;
+    padding-block: 20px;
+  }
+}
+@media (min-width: 80rem) {
+  .model-top {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 64px;
+    padding: 64px 48px;
+  }
+  .model-gallery {
+    width: 500px;
+    max-width: none;
+    flex: none;
+  }
+  .model-info {
+    min-width: 0;
+    flex: 1 1 0;
+  }
+}
+@media (min-width: 96rem) {
+  .model-top {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+  .model-gallery {
+    width: 600px;
+  }
 }
 .model-recommend {
   display: flex;
@@ -1840,14 +1924,16 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 }
 .model-watch-card__reference {
   font-family: var(--font-label);
-  font-size: 16px;
-  line-height: 28px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
   letter-spacing: 1px;
 }
 .model-watch-card__name {
   font-family: var(--font-label);
-  font-size: 18px;
-  line-height: 32px;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 1px;
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-color: transparent;
@@ -1868,29 +1954,6 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   }
 }
 @media (min-width: 64rem) {
-  .model-top {
-    gap: 48px;
-    padding: 48px;
-  }
-  .model-gallery {
-    max-width: 500px;
-  }
-  .model-info {
-    gap: 32px;
-  }
-  .model-info__reference {
-    font-size: 36px;
-    line-height: 44px;
-  }
-  .model-info__name {
-    padding-bottom: 8px;
-    font-size: 24px;
-    line-height: 36px;
-  }
-  .model-specs__row {
-    flex-direction: row;
-    padding-block: 20px;
-  }
   .model-recommend {
     padding: 64px 48px;
   }
@@ -1898,23 +1961,11 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 48px;
   }
+  .model-watch-card__reference {
+    font-size: 20px;
+  }
 }
 @media (min-width: 80rem) {
-  .model-top {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 64px;
-    padding: 64px 48px;
-  }
-  .model-gallery {
-    width: 500px;
-    max-width: none;
-    flex: none;
-  }
-  .model-info {
-    min-width: 0;
-    flex: 1 1 0;
-  }
   .model-recommend {
     padding: 80px 48px;
   }
@@ -1923,14 +1974,6 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   }
 }
 @media (min-width: 96rem) {
-  .model-top {
-    max-width: 1280px;
-    margin-inline: auto;
-    padding-inline: 0;
-  }
-  .model-gallery {
-    width: 600px;
-  }
   .model-recommend {
     padding-inline: 0;
   }

@@ -15,8 +15,12 @@
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --aspect-video: 16 / 9;
@@ -756,11 +760,9 @@
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
-  .text-\[18px\] {
-    font-size: 18px;
-  }
-  .text-\[22px\] {
-    font-size: 22px;
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .text-\[28px\] {
     font-size: 28px;
@@ -772,10 +774,6 @@
   .leading-8 {
     --tw-leading: calc(var(--spacing) * 8);
     line-height: calc(var(--spacing) * 8);
-  }
-  .leading-9 {
-    --tw-leading: calc(var(--spacing) * 9);
-    line-height: calc(var(--spacing) * 9);
   }
   .leading-10 {
     --tw-leading: calc(var(--spacing) * 10);
@@ -966,6 +964,18 @@
       white-space: nowrap;
     }
   }
+  .md\:text-2xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+  }
+  .md\:leading-9 {
+    @media (width >= 48rem) {
+      --tw-leading: calc(var(--spacing) * 9);
+      line-height: calc(var(--spacing) * 9);
+    }
+  }
   .lg\:flex {
     @media (width >= 64rem) {
       display: flex;
@@ -1128,17 +1138,9 @@
   .lg\:type-heading-lg {
     @media (width >= 64rem) {
       font-family: var(--font-heading);
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 500;
-      line-height: 2.75rem;
-    }
-  }
-  .lg\:type-heading-sm {
-    @media (width >= 64rem) {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 500;
-      line-height: 2.25rem;
+      line-height: 2.5rem;
     }
   }
   .lg\:type-heading-xl {
@@ -1310,9 +1312,9 @@
   .xl\:type-heading-lg {
     @media (width >= 80rem) {
       font-family: var(--font-heading);
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 500;
-      line-height: 2.75rem;
+      line-height: 2.5rem;
     }
   }
   .xl\:type-heading-md {
@@ -1331,10 +1333,16 @@
       line-height: 3.125rem;
     }
   }
-  .xl\:text-xl {
+  .xl\:text-lg {
     @media (width >= 80rem) {
-      font-size: var(--text-xl);
-      line-height: var(--tw-leading, var(--text-xl--line-height));
+      font-size: var(--text-lg);
+      line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+  }
+  .xl\:leading-8 {
+    @media (width >= 80rem) {
+      --tw-leading: calc(var(--spacing) * 8);
+      line-height: calc(var(--spacing) * 8);
     }
   }
   .\32xl\:w-\[800px\] {

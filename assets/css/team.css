@@ -748,9 +748,6 @@
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
-  .text-\[28px\] {
-    font-size: 28px;
-  }
   .leading-7 {
     --tw-leading: calc(var(--spacing) * 7);
     line-height: calc(var(--spacing) * 7);
@@ -759,10 +756,6 @@
     --tw-leading: calc(var(--spacing) * 8);
     line-height: calc(var(--spacing) * 8);
   }
-  .leading-10 {
-    --tw-leading: calc(var(--spacing) * 10);
-    line-height: calc(var(--spacing) * 10);
-  }
   .leading-\[22px\] {
     --tw-leading: 22px;
     line-height: 22px;
@@ -770,10 +763,6 @@
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
-  }
-  .font-normal {
-    --tw-font-weight: var(--font-weight-normal);
-    font-weight: var(--font-weight-normal);
   }
   .tracking-\[1\.5px\] {
     --tw-tracking: 1.5px;
@@ -1117,28 +1106,20 @@
       line-height: 2rem;
     }
   }
-  .lg\:type-heading-xl {
-    @media (width >= 64rem) {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      font-weight: 500;
-      line-height: 3.125rem;
-    }
-  }
   .lg\:text-base {
     @media (width >= 64rem) {
       font-size: var(--text-base);
       line-height: var(--tw-leading, var(--text-base--line-height));
     }
   }
+  .lg\:text-\[2rem\] {
+    @media (width >= 64rem) {
+      font-size: 2rem;
+    }
+  }
   .lg\:text-\[28px\] {
     @media (width >= 64rem) {
       font-size: 28px;
-    }
-  }
-  .lg\:text-\[40px\] {
-    @media (width >= 64rem) {
-      font-size: 40px;
     }
   }
   .lg\:leading-6 {
@@ -1153,10 +1134,10 @@
       line-height: calc(var(--spacing) * 10);
     }
   }
-  .lg\:leading-12 {
+  .lg\:leading-11 {
     @media (width >= 64rem) {
-      --tw-leading: calc(var(--spacing) * 12);
-      line-height: calc(var(--spacing) * 12);
+      --tw-leading: calc(var(--spacing) * 11);
+      line-height: calc(var(--spacing) * 11);
     }
   }
   .lg\:whitespace-nowrap {

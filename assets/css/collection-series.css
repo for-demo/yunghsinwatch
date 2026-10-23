@@ -15,9 +15,8 @@
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
-    --font-weight-normal: 400;
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
     --font-weight-medium: 500;
     --default-transition-duration: 300ms;
     --default-transition-timing-function: ease-out;
@@ -734,9 +733,6 @@
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
-  .text-\[18px\] {
-    font-size: 18px;
-  }
   .text-\[22px\] {
     font-size: 22px;
   }
@@ -750,10 +746,6 @@
   .leading-7 {
     --tw-leading: calc(var(--spacing) * 7);
     line-height: calc(var(--spacing) * 7);
-  }
-  .leading-8 {
-    --tw-leading: calc(var(--spacing) * 8);
-    line-height: calc(var(--spacing) * 8);
   }
   .leading-9 {
     --tw-leading: calc(var(--spacing) * 9);
@@ -770,10 +762,6 @@
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
-  }
-  .font-normal {
-    --tw-font-weight: var(--font-weight-normal);
-    font-weight: var(--font-weight-normal);
   }
   .tracking-\[1\.5px\] {
     --tw-tracking: 1.5px;
@@ -1102,18 +1090,15 @@
       line-height: 2rem;
     }
   }
-  .lg\:type-heading-xl {
-    @media (width >= 64rem) {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      font-weight: 500;
-      line-height: 3.125rem;
-    }
-  }
   .lg\:text-base {
     @media (width >= 64rem) {
       font-size: var(--text-base);
       line-height: var(--tw-leading, var(--text-base--line-height));
+    }
+  }
+  .lg\:text-\[2rem\] {
+    @media (width >= 64rem) {
+      font-size: 2rem;
     }
   }
   .lg\:text-\[28px\] {
@@ -1124,11 +1109,6 @@
   .lg\:text-\[32px\] {
     @media (width >= 64rem) {
       font-size: 32px;
-    }
-  }
-  .lg\:text-\[40px\] {
-    @media (width >= 64rem) {
-      font-size: 40px;
     }
   }
   .lg\:leading-6 {
@@ -1147,12 +1127,6 @@
     @media (width >= 64rem) {
       --tw-leading: calc(var(--spacing) * 11);
       line-height: calc(var(--spacing) * 11);
-    }
-  }
-  .lg\:leading-12 {
-    @media (width >= 64rem) {
-      --tw-leading: calc(var(--spacing) * 12);
-      line-height: calc(var(--spacing) * 12);
     }
   }
   .lg\:whitespace-nowrap {
@@ -1203,10 +1177,10 @@
       line-height: 2.5rem;
     }
   }
-  .xl\:text-xl {
+  .xl\:text-lg {
     @media (width >= 80rem) {
-      font-size: var(--text-xl);
-      line-height: var(--tw-leading, var(--text-xl--line-height));
+      font-size: var(--text-lg);
+      line-height: var(--tw-leading, var(--text-lg--line-height));
     }
   }
   .xl\:text-\[32px\] {
@@ -1217,6 +1191,12 @@
   .xl\:text-\[40px\] {
     @media (width >= 80rem) {
       font-size: 40px;
+    }
+  }
+  .xl\:leading-8 {
+    @media (width >= 80rem) {
+      --tw-leading: calc(var(--spacing) * 8);
+      line-height: calc(var(--spacing) * 8);
     }
   }
   .xl\:leading-11 {
@@ -1913,7 +1893,7 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 }
 @media (min-width: 40rem) and (width < 64rem) {
   .series-watch-grid {
-    grid-template-columns: repeat(3, 160px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .series-watch-card:last-child:nth-child(3n + 1) {
     grid-column: 2;

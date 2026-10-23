@@ -17,7 +17,6 @@
     --text-base--line-height: calc(1.5 / 1);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
-    --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
@@ -719,9 +718,6 @@
   .font-body {
     font-family: var(--font-body);
   }
-  .font-display {
-    font-family: var(--font-display);
-  }
   .font-label {
     font-family: var(--font-label);
   }
@@ -737,9 +733,6 @@
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
   }
-  .text-\[28px\] {
-    font-size: 28px;
-  }
   .leading-7 {
     --tw-leading: calc(var(--spacing) * 7);
     line-height: calc(var(--spacing) * 7);
@@ -747,10 +740,6 @@
   .leading-9 {
     --tw-leading: calc(var(--spacing) * 9);
     line-height: calc(var(--spacing) * 9);
-  }
-  .leading-10 {
-    --tw-leading: calc(var(--spacing) * 10);
-    line-height: calc(var(--spacing) * 10);
   }
   .leading-\[22px\] {
     --tw-leading: 22px;
@@ -763,10 +752,6 @@
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
-  }
-  .font-normal {
-    --tw-font-weight: var(--font-weight-normal);
-    font-weight: var(--font-weight-normal);
   }
   .tracking-\[1\.5px\] {
     --tw-tracking: 1.5px;
@@ -1108,23 +1093,15 @@
       line-height: 2.5rem;
     }
   }
-  .lg\:type-heading-xl {
-    @media (width >= 64rem) {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      font-weight: 500;
-      line-height: 3.125rem;
-    }
-  }
   .lg\:text-base {
     @media (width >= 64rem) {
       font-size: var(--text-base);
       line-height: var(--tw-leading, var(--text-base--line-height));
     }
   }
-  .lg\:text-\[40px\] {
+  .lg\:text-\[2rem\] {
     @media (width >= 64rem) {
-      font-size: 40px;
+      font-size: 2rem;
     }
   }
   .lg\:leading-6 {
@@ -1133,10 +1110,10 @@
       line-height: calc(var(--spacing) * 6);
     }
   }
-  .lg\:leading-12 {
+  .lg\:leading-11 {
     @media (width >= 64rem) {
-      --tw-leading: calc(var(--spacing) * 12);
-      line-height: calc(var(--spacing) * 12);
+      --tw-leading: calc(var(--spacing) * 11);
+      line-height: calc(var(--spacing) * 11);
     }
   }
   .lg\:whitespace-nowrap {

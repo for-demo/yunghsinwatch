@@ -15,7 +15,6 @@
     --text-base--line-height: calc(1.5 / 1);
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
-    --font-weight-normal: 400;
     --font-weight-medium: 500;
     --aspect-video: 16 / 9;
     --default-transition-duration: 300ms;
@@ -809,16 +808,9 @@
   .text-\[24px\] {
     font-size: 24px;
   }
-  .text-\[28px\] {
-    font-size: 28px;
-  }
   .leading-7 {
     --tw-leading: calc(var(--spacing) * 7);
     line-height: calc(var(--spacing) * 7);
-  }
-  .leading-10 {
-    --tw-leading: calc(var(--spacing) * 10);
-    line-height: calc(var(--spacing) * 10);
   }
   .leading-\[36px\] {
     --tw-leading: 36px;
@@ -827,10 +819,6 @@
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
-  }
-  .font-normal {
-    --tw-font-weight: var(--font-weight-normal);
-    font-weight: var(--font-weight-normal);
   }
   .tracking-\[1\.5px\] {
     --tw-tracking: 1.5px;
@@ -1344,28 +1332,20 @@
       line-height: 2.5rem;
     }
   }
-  .lg\:type-heading-xl {
-    @media (width >= 64rem) {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      font-weight: 500;
-      line-height: 3.125rem;
-    }
-  }
   .lg\:text-lg {
     @media (width >= 64rem) {
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
     }
   }
+  .lg\:text-\[2rem\] {
+    @media (width >= 64rem) {
+      font-size: 2rem;
+    }
+  }
   .lg\:text-\[32px\] {
     @media (width >= 64rem) {
       font-size: 32px;
-    }
-  }
-  .lg\:text-\[40px\] {
-    @media (width >= 64rem) {
-      font-size: 40px;
     }
   }
   .lg\:leading-8 {
@@ -1374,10 +1354,10 @@
       line-height: calc(var(--spacing) * 8);
     }
   }
-  .lg\:leading-12 {
+  .lg\:leading-11 {
     @media (width >= 64rem) {
-      --tw-leading: calc(var(--spacing) * 12);
-      line-height: calc(var(--spacing) * 12);
+      --tw-leading: calc(var(--spacing) * 11);
+      line-height: calc(var(--spacing) * 11);
     }
   }
   .lg\:leading-\[44px\] {

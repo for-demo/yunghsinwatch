@@ -619,3 +619,45 @@
     init();
   }
 })();
+(() => {
+  "use strict";
+  const button = document.querySelector("[data-gotop]");
+  if (!button) return;
+  const update = () => {
+    button.toggleAttribute("data-visible", window.scrollY > window.innerHeight);
+  };
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+  button.addEventListener("click", () => {
+    if (window.SITE_SCROLL) window.SITE_SCROLL.scrollTo(document.body);
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
+(() => {
+  "use strict";
+  const carousel = document.querySelector(".series-discover__viewport");
+  if (!carousel || typeof window.Swiper !== "function") return;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  new window.Swiper(carousel, {
+    speed: reducedMotion ? 0 : 600,
+    slidesPerView: 1,
+    spaceBetween: 48,
+    navigation: {
+      prevEl: "[data-discover-prev]",
+      nextEl: "[data-discover-next]",
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+      1280: {
+        slidesPerView: 3,
+        spaceBetween: 64,
+      },
+    },
+  });
+})();

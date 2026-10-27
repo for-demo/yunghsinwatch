@@ -293,6 +293,9 @@
   .bottom-6 {
     bottom: calc(var(--spacing) * 6);
   }
+  .bottom-8 {
+    bottom: calc(var(--spacing) * 8);
+  }
   .left-1\/2 {
     left: calc(1 / 2 * 100%);
   }
@@ -832,6 +835,16 @@
   .underline {
     text-decoration-line: underline;
   }
+  .opacity-0 {
+    opacity: 0%;
+  }
+  .drop-shadow-\[0_0_8px_rgb\(0_0_0_\/_12\%\)\] {
+    --tw-drop-shadow-size: drop-shadow(0 0 8px var(--tw-drop-shadow-color, rgb(0 0 0 / 12%)));
+    --tw-drop-shadow: var(--tw-drop-shadow-size);
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,)
+      var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,)
+      var(--tw-drop-shadow,);
+  }
   .transition {
     transition-property:
       color,
@@ -862,6 +875,11 @@
   }
   .transition-\[grid-template-rows\,visibility\] {
     transition-property: grid-template-rows, visibility;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-\[opacity\,visibility\,scale\] {
+    transition-property: opacity, visibility, scale;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
@@ -905,6 +923,16 @@
       display: none;
     }
   }
+  .hover\:scale-105 {
+    &:hover {
+      @media (hover: hover) {
+        --tw-scale-x: 105%;
+        --tw-scale-y: 105%;
+        --tw-scale-z: 105%;
+        scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+  }
   .hover\:bg-black\/40 {
     &:hover {
       @media (hover: hover) {
@@ -943,9 +971,22 @@
       }
     }
   }
+  .focus-visible\:scale-105 {
+    &:focus-visible {
+      --tw-scale-x: 105%;
+      --tw-scale-y: 105%;
+      --tw-scale-z: 105%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
   .focus-visible\:text-brand-gold {
     &:focus-visible {
       color: var(--color-brand-gold);
+    }
+  }
+  .focus-visible\:opacity-80 {
+    &:focus-visible {
+      opacity: 80%;
     }
   }
   .focus-visible\:outline-none {
@@ -974,6 +1015,21 @@
       grid-template-rows: 1fr;
     }
   }
+  .data-\[visible\]\:pointer-events-auto {
+    &[data-visible] {
+      pointer-events: auto;
+    }
+  }
+  .data-\[visible\]\:visible {
+    &[data-visible] {
+      visibility: visible;
+    }
+  }
+  .data-\[visible\]\:opacity-100 {
+    &[data-visible] {
+      opacity: 100%;
+    }
+  }
   .motion-reduce\:transition-none {
     @media (prefers-reduced-motion: reduce) {
       transition-property: none;
@@ -992,6 +1048,16 @@
   .sm\:whitespace-nowrap {
     @media (width >= 40rem) {
       white-space: nowrap;
+    }
+  }
+  .lg\:right-8 {
+    @media (width >= 64rem) {
+      right: calc(var(--spacing) * 8);
+    }
+  }
+  .lg\:bottom-10 {
+    @media (width >= 64rem) {
+      bottom: calc(var(--spacing) * 10);
     }
   }
   .lg\:flex {
@@ -1583,6 +1649,59 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   syntax: "*";
   inherits: false;
 }
+@property --tw-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-drop-shadow-size {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-duration {
   syntax: "*";
   inherits: false;
@@ -1590,6 +1709,21 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 @property --tw-ease {
   syntax: "*";
   inherits: false;
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
 }
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or
@@ -1610,8 +1744,24 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
+      --tw-blur: initial;
+      --tw-brightness: initial;
+      --tw-contrast: initial;
+      --tw-grayscale: initial;
+      --tw-hue-rotate: initial;
+      --tw-invert: initial;
+      --tw-opacity: initial;
+      --tw-saturate: initial;
+      --tw-sepia: initial;
+      --tw-drop-shadow: initial;
+      --tw-drop-shadow-color: initial;
+      --tw-drop-shadow-alpha: 100%;
+      --tw-drop-shadow-size: initial;
       --tw-duration: initial;
       --tw-ease: initial;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
     }
   }
 }

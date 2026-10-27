@@ -621,6 +621,21 @@
 })();
 (() => {
   "use strict";
+  const button = document.querySelector("[data-gotop]");
+  if (!button) return;
+  const update = () => {
+    button.toggleAttribute("data-visible", window.scrollY > window.innerHeight);
+  };
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+  button.addEventListener("click", () => {
+    if (window.SITE_SCROLL) window.SITE_SCROLL.scrollTo(document.body);
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
+(() => {
+  "use strict";
   const carousel = document.querySelector(".home-hero-swiper");
   if (!carousel || typeof window.Swiper !== "function") return;
   new window.Swiper(carousel, {

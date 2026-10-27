@@ -16,6 +16,7 @@
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
     --font-weight-medium: 500;
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --aspect-video: 16 / 9;
     --default-transition-duration: 300ms;
     --default-transition-timing-function: ease-out;
@@ -246,6 +247,9 @@
   .pointer-events-none {
     pointer-events: none;
   }
+  .invisible {
+    visibility: hidden;
+  }
   .sr-only {
     position: absolute;
     width: 1px;
@@ -287,6 +291,9 @@
   .right-5 {
     right: calc(var(--spacing) * 5);
   }
+  .bottom-8 {
+    bottom: calc(var(--spacing) * 8);
+  }
   .bottom-\[38px\] {
     bottom: 38px;
   }
@@ -319,12 +326,6 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-  }
-  .line-clamp-4 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
   }
   .block {
     display: block;
@@ -560,6 +561,9 @@
   }
   .rounded-\[4px\] {
     border-radius: 4px;
+  }
+  .rounded-\[50px\] {
+    border-radius: 50px;
   }
   .border {
     border-style: var(--tw-border-style);
@@ -865,6 +869,16 @@
   .underline {
     text-decoration-line: underline;
   }
+  .opacity-0 {
+    opacity: 0%;
+  }
+  .drop-shadow-\[0_0_8px_rgb\(0_0_0_\/_12\%\)\] {
+    --tw-drop-shadow-size: drop-shadow(0 0 8px var(--tw-drop-shadow-color, rgb(0 0 0 / 12%)));
+    --tw-drop-shadow: var(--tw-drop-shadow-size);
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,)
+      var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,)
+      var(--tw-drop-shadow,);
+  }
   .transition {
     transition-property:
       color,
@@ -893,6 +907,11 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-\[opacity\,visibility\,scale\] {
+    transition-property: opacity, visibility, scale;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .transition-colors {
     transition-property:
       color, background-color, border-color, outline-color, text-decoration-color, fill, stroke,
@@ -909,6 +928,14 @@
     transition-property: transform, translate, scale, rotate;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+  }
+  .ease-out {
+    --tw-ease: var(--ease-out);
+    transition-timing-function: var(--ease-out);
   }
   .group-hover\:scale-110 {
     &:is(:where(.group):hover *) {
@@ -941,6 +968,16 @@
   .placeholder\:text-\[\#ababab\] {
     &::placeholder {
       color: #ababab;
+    }
+  }
+  .hover\:scale-105 {
+    &:hover {
+      @media (hover: hover) {
+        --tw-scale-x: 105%;
+        --tw-scale-y: 105%;
+        --tw-scale-z: 105%;
+        scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
     }
   }
   .hover\:bg-black\/40 {
@@ -995,9 +1032,22 @@
       }
     }
   }
+  .focus-visible\:scale-105 {
+    &:focus-visible {
+      --tw-scale-x: 105%;
+      --tw-scale-y: 105%;
+      --tw-scale-z: 105%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
   .focus-visible\:text-brand-gold {
     &:focus-visible {
       color: var(--color-brand-gold);
+    }
+  }
+  .focus-visible\:opacity-80 {
+    &:focus-visible {
+      opacity: 80%;
     }
   }
   .focus-visible\:outline-none {
@@ -1014,6 +1064,21 @@
   .data-invalid\:bg-error-light {
     &[data-invalid] {
       background-color: var(--color-error-light);
+    }
+  }
+  .data-\[visible\]\:pointer-events-auto {
+    &[data-visible] {
+      pointer-events: auto;
+    }
+  }
+  .data-\[visible\]\:visible {
+    &[data-visible] {
+      visibility: visible;
+    }
+  }
+  .data-\[visible\]\:opacity-100 {
+    &[data-visible] {
+      opacity: 100%;
     }
   }
   .sm\:max-w-none {
@@ -1041,9 +1106,19 @@
       top: calc(1 / 2 * 100%);
     }
   }
+  .lg\:right-8 {
+    @media (width >= 64rem) {
+      right: calc(var(--spacing) * 8);
+    }
+  }
   .lg\:right-auto {
     @media (width >= 64rem) {
       right: auto;
+    }
+  }
+  .lg\:bottom-10 {
+    @media (width >= 64rem) {
+      bottom: calc(var(--spacing) * 10);
     }
   }
   .lg\:bottom-auto {
@@ -1366,14 +1441,6 @@
   .lg\:whitespace-nowrap {
     @media (width >= 64rem) {
       white-space: nowrap;
-    }
-  }
-  .xl\:line-clamp-5 {
-    @media (width >= 80rem) {
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 5;
     }
   }
   .xl\:line-clamp-none {
@@ -1769,6 +1836,67 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   syntax: "*";
   inherits: false;
 }
+@property --tw-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-drop-shadow-size {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or
     ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
@@ -1791,6 +1919,21 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
+      --tw-blur: initial;
+      --tw-brightness: initial;
+      --tw-contrast: initial;
+      --tw-grayscale: initial;
+      --tw-hue-rotate: initial;
+      --tw-invert: initial;
+      --tw-opacity: initial;
+      --tw-saturate: initial;
+      --tw-sepia: initial;
+      --tw-drop-shadow: initial;
+      --tw-drop-shadow-color: initial;
+      --tw-drop-shadow-alpha: 100%;
+      --tw-drop-shadow-size: initial;
+      --tw-duration: initial;
+      --tw-ease: initial;
     }
   }
 }

@@ -9,6 +9,7 @@
     />
     <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
     <title>Golden Ellipse Collection | Yung Hsin Watch</title>
+    <link rel="stylesheet" href="../assets/vendor/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../assets/vendor/lenis/lenis.css" />
     <link rel="stylesheet" href="../assets/css/en-collection-series.css" />
   </head>
@@ -1129,28 +1130,72 @@
           </h2>
         </div>
 
-        <div class="series-discover__grid">
-          <a class="series-discover__card" href="./collection-series.html" data-reveal-media>
-            <img
-              src="../assets/images/collection/series/discover-grand-complications.png"
-              alt="Grand Complications"
-            />
-            <h3>Grand Complications</h3>
-          </a>
-          <a class="series-discover__card" href="./collection-series.html" data-reveal-media>
-            <img
-              src="../assets/images/collection/series/discover-complications.png"
-              alt="Complications"
-            />
-            <h3>Complications</h3>
-          </a>
-          <a class="series-discover__card" href="./collection-series.html" data-reveal-media>
-            <img
-              src="../assets/images/collection/series/discover-golden-ellipse.png"
-              alt="Golden Ellipse"
-            />
-            <h3>Golden Ellipse</h3>
-          </a>
+        <div class="series-discover__carousel" data-reveal-media>
+          <div class="series-discover__viewport swiper">
+            <div class="swiper-wrapper">
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img
+                  src="../assets/images/collection/grand-complications.png"
+                  alt="Grand Complications"
+                  loading="lazy"
+                />
+                <h3>Grand Complications</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img
+                  src="../assets/images/collection/complications.png"
+                  alt="Complications"
+                  loading="lazy"
+                />
+                <h3>Complications</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img
+                  src="../assets/images/collection/calatrava.png"
+                  alt="Calatrava"
+                  loading="lazy"
+                />
+                <h3>Calatrava</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/gondolo.png" alt="Gondolo" loading="lazy" />
+                <h3>Gondolo</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/cubitus.png" alt="Cubitus" loading="lazy" />
+                <h3>Cubitus</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/nautilus.png" alt="Nautilus" loading="lazy" />
+                <h3>Nautilus</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/aquanaut.png" alt="Aquanaut" loading="lazy" />
+                <h3>Aquanaut</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/twenty4.png" alt="Twenty~4" loading="lazy" />
+                <h3>Twenty~4</h3>
+              </a>
+            </div>
+          </div>
+
+          <button
+            class="series-discover__nav series-discover__nav--prev"
+            type="button"
+            data-discover-prev
+            aria-label="Previous collection"
+          >
+            <img class="rotate-180" src="../assets/icons/arrow-right.svg" alt="" />
+          </button>
+          <button
+            class="series-discover__nav series-discover__nav--next"
+            type="button"
+            data-discover-next
+            aria-label="Next collection"
+          >
+            <img src="../assets/icons/arrow-right.svg" alt="" />
+          </button>
         </div>
       </section>
     </main>
@@ -1169,11 +1214,18 @@
               alt="Patek Philippe"
             />
             <img class="size-3 shrink-0" src="../assets/icons/footer-x.svg" alt="" />
-            <img
-              class="h-[76px] w-40 lg:h-[84px] lg:w-44"
-              src="../assets/images/logo-yh-light.svg"
-              alt="永新鐘錶"
-            />
+            <a
+              class="shrink-0 transition-opacity hover:opacity-80 focus-visible:opacity-80 focus-visible:outline-none"
+              href="https://www.yunghsinwatch.com/"
+              target="_blank"
+              rel="noopener"
+            >
+              <img
+                class="block h-[76px] w-40 lg:h-[84px] lg:w-44"
+                src="../assets/images/logo-yh-light.svg"
+                alt="永新鐘錶"
+              />
+            </a>
           </div>
 
           <address class="flex flex-col items-center gap-2 not-italic lg:items-start">
@@ -1274,6 +1326,16 @@
                   >PRIVACY POLICY</a
                 >
               </li>
+              <li>
+                <img class="size-1" src="../assets/icons/footer-dot.svg" alt="" />
+              </li>
+              <li>
+                <a
+                  class="transition-colors hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+                  href="#"
+                  >COOKIE SETTINGS</a
+                >
+              </li>
             </ul>
           </nav>
         </div>
@@ -1288,6 +1350,21 @@
       </div>
     </footer>
 
+    <button
+      class="site-gotop pointer-events-none invisible fixed right-5 bottom-8 z-40 flex cursor-pointer items-center rounded-[50px] bg-brand-gold p-2.5 text-white opacity-0 drop-shadow-[0_0_8px_rgb(0_0_0_/_12%)] transition-[opacity,visibility,scale] duration-300 ease-out hover:scale-105 focus-visible:scale-105 focus-visible:outline-none data-[visible]:pointer-events-auto data-[visible]:visible data-[visible]:opacity-100 lg:right-8 lg:bottom-10"
+      type="button"
+      data-gotop
+      aria-label="Back to top"
+    >
+      <svg class="block size-6 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M3.89154 14.3584C3.55569 14.0226 3.55569 13.4775 3.89154 13.1416L11.3915 5.64161C11.7274 5.30575 12.2725 5.30575 12.6083 5.6416L20.1083 13.1416C20.4442 13.4775 20.4442 14.0226 20.1083 14.3584C19.7725 14.6943 19.2274 14.6943 18.8915 14.3584L11.9999 7.4668L5.10833 14.3584C4.77248 14.6943 4.22739 14.6943 3.89154 14.3584Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="../assets/vendor/lenis/lenis.min.js"></script>
     <script src="../assets/vendor/gsap/gsap.min.js"></script>
     <script src="../assets/vendor/gsap/ScrollTrigger.min.js"></script>

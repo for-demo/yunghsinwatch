@@ -1426,10 +1426,10 @@
 
     <footer class="site-footer bg-[#2a221b] text-white">
       <div
-        class="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-8 px-5 pt-8 pb-6 sm:px-12 lg:flex-row lg:gap-10 xl:px-12 2xl:px-0"
+        class="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-8 px-5 pt-8 pb-6 sm:px-12 lg:gap-10 xl:px-12 2xl:px-0"
       >
         <div
-          class="flex w-full flex-col items-center gap-10 lg:min-w-0 lg:flex-1 lg:flex-row lg:gap-5 xl:gap-14"
+          class="flex w-full flex-col items-center gap-10 lg:w-auto lg:flex-row lg:gap-5 xl:gap-14"
         >
           <div class="flex w-[398.24px] max-w-full shrink-0 items-center justify-center gap-4">
             <img
@@ -1495,7 +1495,7 @@
           </address>
         </div>
 
-        <div class="flex shrink-0 flex-col items-center gap-6 lg:items-end lg:gap-4">
+        <div class="flex shrink-0 flex-col items-center gap-6 lg:gap-4">
           <div class="flex items-center gap-10 lg:gap-6">
             <a
               class="text-white transition-colors hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
@@ -1557,6 +1557,7 @@
                 <a
                   class="transition-colors hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
                   href="#"
+                  data-cookie-open
                   >COOKIE SETTINGS</a
                 >
               </li>
@@ -1574,6 +1575,173 @@
       </div>
     </footer>
 
+    <div class="cookie-consent fixed inset-0 z-50" data-cookie-consent aria-hidden="true">
+      <div class="cookie-consent__scrim absolute inset-0 bg-black/40"></div>
+
+      <div
+        class="cookie-consent__scroll absolute inset-0 overflow-y-auto overscroll-contain"
+        data-lenis-prevent
+      >
+        <div class="flex min-h-full items-center justify-center px-5 py-10 lg:px-8">
+          <div
+            class="cookie-consent__panel flex w-full max-w-[786px] flex-col items-center gap-8 bg-white p-6 text-black lg:p-10"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cookie-consent-title"
+          >
+            <div class="flex w-full flex-col items-center gap-8">
+              <p
+                class="w-full text-center type-heading-md font-semibold tracking-[1px] text-brown-dark en:font-medium"
+                id="cookie-consent-title"
+              >
+                At YH Watch Patek Philippe Boutique, we value your privacy
+              </p>
+              <p
+                class="w-full text-center type-body-lg en:font-label en:text-base en:leading-7 en:tracking-[1px]"
+              >
+                Our website uses cookies to provide a better user experience. By clicking "Accept
+                All Cookies", you consent to the use of all cookies on this website.
+              </p>
+              <div class="flex flex-col items-center gap-4 sm:flex-row sm:gap-10">
+                <button
+                  class="w-[172px] cursor-pointer border border-brown-dark bg-brown-dark px-4 py-3 text-center type-body-sm text-white transition-opacity hover:opacity-90 en:font-label"
+                  type="button"
+                  data-cookie-close
+                >
+                  Accept All Cookies
+                </button>
+                <button
+                  class="w-[172px] cursor-pointer border border-brown-dark px-4 py-3 text-center type-body-sm text-brown-dark transition-colors hover:bg-background en:font-label"
+                  type="button"
+                  data-cookie-close
+                >
+                  Reject All Cookies
+                </button>
+              </div>
+            </div>
+
+            <hr class="w-full border-t border-[#dadada]" />
+
+            <div class="flex w-full flex-col gap-8 tracking-[1px]">
+              <div class="flex flex-col gap-1">
+                <p class="type-body-base leading-6 font-bold text-brown-dark en:font-label">
+                  Strictly Necessary
+                </p>
+                <p class="type-body-base en:font-label">
+                  Necessary cookies enable core website functions such as page navigation and access
+                  to secure areas. The website cannot function properly without these cookies.
+                </p>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="flex cursor-pointer items-start gap-2">
+                  <input class="peer sr-only" type="checkbox" checked />
+                  <img
+                    class="size-6 shrink-0 peer-checked:hidden"
+                    src="../assets/icons/square.svg"
+                    alt=""
+                  />
+                  <img
+                    class="hidden size-6 shrink-0 peer-checked:block"
+                    src="../assets/icons/tick-square.svg"
+                    alt=""
+                  />
+                  <span class="type-body-base leading-6 font-bold text-brown-dark en:font-label"
+                    >Analytics and Statistics</span
+                  >
+                </label>
+                <div class="flex flex-col gap-2 pl-8">
+                  <p class="type-body-base en:font-label">
+                    Analytics cookies help us improve our website by collecting and reporting
+                    information on how it is used, such as which pages visitors view, how long they
+                    stay and whether they return. The data collected remains anonymous.
+                  </p>
+                  <div class="flex flex-col gap-3 bg-background p-4">
+                    <div class="flex flex-col gap-2">
+                      <label class="flex cursor-pointer items-start gap-2">
+                        <input class="peer sr-only" type="checkbox" checked />
+                        <img
+                          class="size-6 shrink-0 peer-checked:hidden"
+                          src="../assets/icons/square.svg"
+                          alt=""
+                        />
+                        <img
+                          class="hidden size-6 shrink-0 peer-checked:block"
+                          src="../assets/icons/tick-square.svg"
+                          alt=""
+                        />
+                        <span class="font-label text-base leading-6 font-semibold text-brown-dark">
+                          Google Analytics
+                        </span>
+                      </label>
+                      <p class="pl-8 type-body-base en:font-label">
+                        Google Analytics cookies create statistics on website visits. For more
+                        information, please see the
+                        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener"
+                          >Google Privacy Policy</a
+                        >
+                      </p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                      <label class="flex cursor-pointer items-start gap-2">
+                        <input class="peer sr-only" type="checkbox" checked />
+                        <img
+                          class="size-6 shrink-0 peer-checked:hidden"
+                          src="../assets/icons/square.svg"
+                          alt=""
+                        />
+                        <img
+                          class="hidden size-6 shrink-0 peer-checked:block"
+                          src="../assets/icons/tick-square.svg"
+                          alt=""
+                        />
+                        <span class="font-label text-base leading-6 font-semibold text-brown-dark">
+                          Patek Philippe
+                        </span>
+                      </label>
+                      <p class="pl-8 type-body-base en:font-label">
+                        Learn more about the
+                        <a
+                          href="https://www.patek.com/en/legal-notices/cookie-policy"
+                          target="_blank"
+                          rel="noopener"
+                          >Patek Philippe cookie policy</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="flex cursor-pointer items-start gap-2">
+                  <input class="peer sr-only" type="checkbox" checked />
+                  <img
+                    class="size-6 shrink-0 peer-checked:hidden"
+                    src="../assets/icons/square.svg"
+                    alt=""
+                  />
+                  <img
+                    class="hidden size-6 shrink-0 peer-checked:block"
+                    src="../assets/icons/tick-square.svg"
+                    alt=""
+                  />
+                  <span class="type-body-base leading-6 font-bold text-brown-dark en:font-label"
+                    >Advertising and Marketing</span
+                  >
+                </label>
+                <p class="pl-8 type-body-base en:font-label">
+                  These cookies collect your preferences and behavior on the website (such as
+                  products or pages you click) so that we and our third-party advertising partners
+                  (such as Google and Meta) can show you more relevant content.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <button
       class="site-gotop pointer-events-none invisible fixed right-5 bottom-8 z-40 flex cursor-pointer items-center rounded-[50px] bg-brand-gold p-2.5 text-white opacity-0 drop-shadow-[0_0_8px_rgb(0_0_0_/_12%)] transition-[opacity,visibility,scale] duration-300 ease-out hover:scale-105 focus-visible:scale-105 focus-visible:outline-none data-[visible]:pointer-events-auto data-[visible]:visible data-[visible]:opacity-100 lg:right-8 lg:bottom-10"
       type="button"
@@ -1582,7 +1750,11 @@
     >
       <svg class="block size-6 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path
-          d="M3.89154 14.3584C3.55569 14.0226 3.55569 13.4775 3.89154 13.1416L11.3915 5.64161C11.7274 5.30575 12.2725 5.30575 12.6083 5.6416L20.1083 13.1416C20.4442 13.4775 20.4442 14.0226 20.1083 14.3584C19.7725 14.6943 19.2274 14.6943 18.8915 14.3584L11.9999 7.4668L5.10833 14.3584C4.77248 14.6943 4.22739 14.6943 3.89154 14.3584Z"
+          d="M13.0996 22.2998C13.0996 22.7416 12.7416 23.0996 12.2998 23.0996C11.8581 23.0995 11.5 22.7415 11.5 22.2998V11.2305L7.36526 15.3652L7.36233 15.3691C7.05232 15.6686 6.56004 15.6685 6.25002 15.3691C5.93249 15.0623 5.92393 14.556 6.23049 14.2383L11.7344 8.73438C12.0468 8.42211 12.553 8.42204 12.8653 8.73438L18.3604 14.2295C18.3677 14.2365 18.3749 14.2438 18.3809 14.25C18.6878 14.5678 18.6802 15.0749 18.3623 15.3818C18.0458 15.6876 17.5417 15.6795 17.2344 15.3652L13.0996 11.2305V22.2998Z"
+          fill="currentColor"
+        />
+        <path
+          d="M19.9615 5.21739C20.3142 5.21739 20.6 5.58076 20.6 6.02899C20.6 6.47722 20.3142 6.84058 19.9615 6.84058H4.63846C4.28585 6.84058 4 6.47722 4 6.02899C4 5.58076 4.28585 5.21739 4.63846 5.21739H19.9615Z"
           fill="currentColor"
         />
       </svg>

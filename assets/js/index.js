@@ -672,8 +672,13 @@
   const button = document.querySelector("[data-gotop]");
   if (!button) return;
   const update = () => {
-    button.toggleAttribute("data-visible", window.scrollY > window.innerHeight);
+    const locked = document.body.classList.contains("overflow-hidden");
+    button.toggleAttribute("data-visible", !locked && window.scrollY > window.innerHeight);
   };
+  new MutationObserver(update).observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
   window.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update);
   update();

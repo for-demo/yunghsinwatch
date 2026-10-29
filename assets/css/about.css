@@ -1459,9 +1459,29 @@
       width: 850px;
     }
   }
+  .\32xl\:w-auto {
+    @media (width >= 96rem) {
+      width: auto;
+    }
+  }
   .\32xl\:max-w-\[1200px\] {
     @media (width >= 96rem) {
       max-width: 1200px;
+    }
+  }
+  .\32xl\:flex-row {
+    @media (width >= 96rem) {
+      flex-direction: row;
+    }
+  }
+  .\32xl\:items-end {
+    @media (width >= 96rem) {
+      align-items: flex-end;
+    }
+  }
+  .\32xl\:justify-between {
+    @media (width >= 96rem) {
+      justify-content: space-between;
     }
   }
   .\32xl\:px-0 {
@@ -1590,6 +1610,20 @@
     @media (width >= 80rem) {
       &:where(html[lang="en"] *) {
         white-space: nowrap;
+      }
+    }
+  }
+  .\32xl\:en\:max-w-\[18\.5rem\] {
+    @media (width >= 96rem) {
+      &:where(html[lang="en"] *) {
+        max-width: 18.5rem;
+      }
+    }
+  }
+  .\32xl\:en\:whitespace-normal {
+    @media (width >= 96rem) {
+      &:where(html[lang="en"] *) {
+        white-space: normal;
       }
     }
   }
@@ -1957,6 +1991,11 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 }
 .site-header__brand-line:empty {
   display: none;
+}
+@media (max-width: 63.9375rem) {
+  :lang(en) .site-header__brand-line {
+    line-height: 1.125rem;
+  }
 }
 .site-header__nav {
   display: none;

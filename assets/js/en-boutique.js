@@ -801,6 +801,7 @@
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && isOpen()) close();
     });
+    /*! open(); */
   };
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

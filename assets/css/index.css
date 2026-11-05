@@ -1771,6 +1771,14 @@
       }
     }
   }
+  .xl\:en\:font-medium {
+    @media (width >= 80rem) {
+      &:where(html[lang="en"] *) {
+        --tw-font-weight: var(--font-weight-medium);
+        font-weight: var(--font-weight-medium);
+      }
+    }
+  }
   .xl\:en\:whitespace-nowrap {
     @media (width >= 80rem) {
       &:where(html[lang="en"] *) {

@@ -621,74 +621,6 @@
 })();
 (() => {
   "use strict";
-  const init = () => {
-    const modal = document.querySelector("[data-cookie-consent]");
-    if (!modal) return;
-    let lastTrigger = null;
-    const isOpen = () => modal.classList.contains("is-open");
-    const open = (trigger) => {
-      lastTrigger = trigger ?? null;
-      modal.classList.add("is-open");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("overflow-hidden");
-    };
-    const close = () => {
-      modal.classList.remove("is-open");
-      modal.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("overflow-hidden");
-      lastTrigger?.focus({ preventScroll: true });
-      lastTrigger = null;
-    };
-    document.addEventListener("click", (event) => {
-      const { target } = event;
-      if (!(target instanceof Element)) return;
-      const trigger = target.closest("[data-cookie-open]");
-      if (trigger) {
-        event.preventDefault();
-        open(trigger);
-        return;
-      }
-      if (!isOpen()) return;
-      if (target.closest("[data-cookie-close]")) {
-        close();
-        return;
-      }
-      if (!modal.contains(target) || target.closest(".cookie-consent__panel")) return;
-      close();
-    });
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && isOpen()) close();
-    });
-    /*! open(); */
-  };
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
-(() => {
-  "use strict";
-  const button = document.querySelector("[data-gotop]");
-  if (!button) return;
-  const update = () => {
-    const locked = document.body.classList.contains("overflow-hidden");
-    button.toggleAttribute("data-visible", !locked && window.scrollY > window.innerHeight);
-  };
-  new MutationObserver(update).observe(document.body, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update);
-  update();
-  button.addEventListener("click", () => {
-    if (window.SITE_SCROLL) window.SITE_SCROLL.scrollTo(document.body);
-    else window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-})();
-(() => {
-  "use strict";
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const errorNodeFor = (field) => {
     let node = field;
@@ -731,8 +663,7 @@
   };
   const init = () => {
     const form = document.querySelector("[data-contact-form]");
-    const complete = document.querySelector("[data-contact-complete]");
-    if (!form || !complete) return;
+    if (!form) return;
     initDialCode(form);
     const fields = [...form.querySelectorAll("[data-contact-field]")];
     for (const field of fields) {
@@ -753,9 +684,7 @@
         firstInvalid.focus();
         return;
       }
-      form.hidden = true;
-      complete.hidden = false;
-      window.SITE_SCROLL.scrollTo(complete, { block: "center" });
+      window.location.href = "./contact-complete.html";
     });
   };
   if (document.readyState === "loading") {

@@ -970,7 +970,7 @@
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <div
-                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 xl:w-[450px] 2xl:left-32 2xl:w-[525px]"
+                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -996,7 +996,7 @@
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <div
-                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 xl:w-[450px] 2xl:left-32 2xl:w-[525px]"
+                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -1022,7 +1022,7 @@
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <div
-                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 xl:w-[450px] 2xl:left-32 2xl:w-[525px]"
+                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -1046,24 +1046,10 @@
       <section
         class="flex w-full flex-col items-center gap-8 px-5 py-12 lg:gap-12 lg:px-12 lg:pt-14 lg:pb-12 xl:gap-14 xl:py-[72px]"
       >
-        <iframe
-          class="aspect-video w-full max-w-[1200px] border-0 bg-black"
-          src="https://www.youtube-nocookie.com/embed/TTIt78URWb4"
-          title="Patek Philippe video"
-          loading="lazy"
-          allow="
-            accelerometer;
-            autoplay;
-            clipboard-write;
-            encrypted-media;
-            gyroscope;
-            picture-in-picture;
-            web-share;
-          "
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-          data-reveal-media
-        ></iframe>
+        <div class="aspect-video w-full max-w-[1200px] bg-black" data-reveal-media>
+          <div id="PPiframe" class="size-full" key="0cd9b5da" lang="en"></div>
+        </div>
+        <script async src="https://iframe.patek.com/script.js"></script>
         <img
           class="size-8 lg:size-10 xl:size-14"
           src="../assets/images/home/patek-philippe-mark.svg"
